@@ -14,20 +14,21 @@ import javax.persistence.EntityManager;
  */
 public class UserDao extends GenericDao<User, Integer> {
 
-    EntityManager entityManager = new Conexao().getConnection();
+    public UserDao() {
+        EntityManager entityManager = new Conexao().getConnection();
+    }
 
     public Object login(String login, String pass) {
         try {
             Object usuario = entityManager
                     .createQuery("select u from User u where login = :login and pass = :senha")
                     .setParameter("login", login).setParameter("senha", pass).getResultList();
-
+            System.out.println(usuario.toString());
+//            entityManager.close();
             return usuario;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            entityManager.close();
         }
     }
 }

@@ -19,12 +19,14 @@ public class LoginControl {
 
     String login;
     String senha;
-    User user = new User();
+    User user;
     UserDao userDao;
     Frame principal = new PrincipalTela();
+    LoginTela loginTela;
 
     public LoginControl() {
         userDao = new UserDao();
+        user = new User();
     }
 
     public void takeData() {
@@ -32,21 +34,32 @@ public class LoginControl {
         senha = LoginTela.tfPass.getText();
         user.setLogin(login);
         user.setPass(senha);
+        System.out.println("login>>>" + login);
+        System.out.println("pass>>>>" + senha);
 
     }
 
+    public void cleanFields() {
+        LoginTela.tfLogin.setText("");
+        LoginTela.tfPass.setText("");
+    }
+
     public boolean authenticate() {
-        if (userDao.login(user.getLogin(), user.getPass()) == null) {
+        if (userDao.login(user.getLogin().toString(), user.getPass().toString()) == null) {
+            cleanFields();
+            loginTela.labelUserIncorreto.setVisible(true);
             return false;
         } else {
             return true;
         }
-
     }
 
     public void openFramePrincipal() {
-        if (authenticate()) {
+        takeData();
+        Boolean confere = authenticate();
+        if (confere == true) {
             principal.setVisible(true);
+            loginTela.dispose();
         }
 
     }

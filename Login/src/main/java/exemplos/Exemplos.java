@@ -22,7 +22,7 @@ public class Exemplos {
 //    u.setAccess(1);
         UserDao dao = new UserDao();
 //    dao.salvar(u);
-        System.out.println(dao.login("1234", "1234"));
+        System.out.println(dao.login("123", "123"));
 
 //        Persistence.createEntityManagerFactory("StrixDesktop-PU");
     }

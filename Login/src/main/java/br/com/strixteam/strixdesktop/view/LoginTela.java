@@ -24,6 +24,7 @@ public class LoginTela extends javax.swing.JFrame {
         initComponents();
         control = new LoginControl();
         this.setLocationRelativeTo(null);
+        labelUserIncorreto.setVisible(false);
     }
 
     /**
@@ -37,6 +38,7 @@ public class LoginTela extends javax.swing.JFrame {
 
         painelImagemFundo1 = new br.com.strixteam.strixdesktop.view.PainelImagemFundo();
         jButton1 = new javax.swing.JButton();
+        labelUserIncorreto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -79,11 +81,15 @@ public class LoginTela extends javax.swing.JFrame {
         jLabel2.setText("Login:");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login.png"))); // NOI18N
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
+
+        labelUserIncorreto.setForeground(new java.awt.Color(204, 0, 0));
+        labelUserIncorreto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelUserIncorreto.setText("Usuário/Senha incorreto!");
 
         javax.swing.GroupLayout painelImagemFundo1Layout = new javax.swing.GroupLayout(painelImagemFundo1);
         painelImagemFundo1.setLayout(painelImagemFundo1Layout);
@@ -105,9 +111,12 @@ public class LoginTela extends javax.swing.JFrame {
                                 .addComponent(tfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(painelImagemFundo1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(painelImagemFundo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelUserIncorreto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(painelImagemFundo1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelImagemFundo1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -129,7 +138,9 @@ public class LoginTela extends javax.swing.JFrame {
                         .addGap(162, 162, 162))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelImagemFundo1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelUserIncorreto)
+                        .addGap(5, 5, 5)))
                 .addGroup(painelImagemFundo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -175,10 +186,9 @@ public class LoginTela extends javax.swing.JFrame {
         exit.setForeground(Color.BLACK);
     }//GEN-LAST:event_painelImagemFundo1MouseMoved
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         control.openFramePrincipal();
-        this.dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,6 +232,7 @@ public class LoginTela extends javax.swing.JFrame {
     public static final javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
     public static final javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
     public static final javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+    public javax.swing.JLabel labelUserIncorreto;
     private br.com.strixteam.strixdesktop.view.PainelImagemFundo painelImagemFundo1;
     public static final javax.swing.JTextField tfLogin = new javax.swing.JTextField();
     public static final javax.swing.JTextField tfPass = new javax.swing.JTextField();
